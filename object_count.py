@@ -18,17 +18,15 @@ def takeAllData():
                     allData[let + numb + i] = oead.byml.from_binary(oead.yaz0.decompress(f.read()))['Objs']
     return allData
 
-def oneMapUnit(data, file):
-    with open(file,'w',encoding="utf-8") as f:
-        f.write(oead.byml.to_text(data))
+def oneMapUnit(data):
     for object in data:
         allObjects.append(object['UnitConfigName'])
 
 def allMapUnits(bigData):
     for mapUnit in bigData:
-        oneMapUnit(bigData[mapUnit],'json\\' + mapUnit + '.json')
+        oneMapUnit(bigData[mapUnit])
 
-def oneGameAnalysis():
+def oneGameAnalysis(allObjects):
     allMapUnits(takeAllData())
     allObjects = Counter(allObjects)
     allObjectsFinal = {k: v for k, v in sorted(allObjects.items(), key=lambda item: item[1], reverse = True)}
@@ -41,7 +39,7 @@ def oneGameAnalysis():
 
 def main():
     if input('Do you want to do a one folder analysis ? Enter y if it\'s the case, or anything else if it\'s not : ') == "y":
-        oneGameAnalysis()
+        oneGameAnalysis(allObjects)
         return 'Finished counting. Check AllObjects.json.'
 
 if __name__ == "__main__":
