@@ -38,3 +38,11 @@ def oneGameAnalysis():
     for i in allObjectsFinal:
         totalObjs = totalObjs + allObjectsFinal[i]
     print('Total number of objects in MainField :',totalObjs)
+
+def main():
+    if input('Do you want to do a one folder analysis ? Enter y if it\'s the case, or anything else if it\'s not : ') == "y":
+        oneGameAnalysis()
+        return 'Finished counting. Check AllObjects.json.'
+
+if __name__ == "__main__":
+  main()
