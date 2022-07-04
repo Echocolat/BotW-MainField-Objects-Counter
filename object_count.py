@@ -28,15 +28,13 @@ def allMapUnits(bigData):
     for mapUnit in bigData:
         oneMapUnit(bigData[mapUnit],'json\\' + mapUnit + '.json')
 
-allMapUnits(takeAllData())
-
-allObjects = Counter(allObjects)
-allObjectsFinal = {k: v for k, v in sorted(allObjects.items(), key=lambda item: item[1], reverse = True)}
-with open('AllObjects.json','w') as f:
-    f.write(json.dumps(allObjectsFinal, indent = 4))
-
-totalObjs = 0
-for i in allObjectsFinal:
-    totalObjs = totalObjs + allObjectsFinal[i]
-
-print('Total number of objects in MainField :',totalObjs)
+def oneGameAnalysis():
+    allMapUnits(takeAllData())
+    allObjects = Counter(allObjects)
+    allObjectsFinal = {k: v for k, v in sorted(allObjects.items(), key=lambda item: item[1], reverse = True)}
+    with open('AllObjects.json','w') as f:
+        f.write(json.dumps(allObjectsFinal, indent = 4))
+    totalObjs = 0
+    for i in allObjectsFinal:
+        totalObjs = totalObjs + allObjectsFinal[i]
+    print('Total number of objects in MainField :',totalObjs)
